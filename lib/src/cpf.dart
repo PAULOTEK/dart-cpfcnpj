@@ -1,6 +1,6 @@
 class CPF {
   // Formatar número de CPF
-  static String format(String cpf) {
+  static String format(String? cpf) {
     if (cpf == null) return '';
 
     // Obter somente os números do CPF
@@ -10,7 +10,7 @@ class CPF {
     if (numeros.length != 11) return cpf;
 
     // Retornar CPF formatado
-    return "${numeros.substring(0, 3)}.${numeros.substring(3, 6)}.${numeros.substring(6, 9)}-${numeros.substring(9)}";
+    return '${numeros.substring(0, 3)}.${numeros.substring(3, 6)}.${numeros.substring(6, 9)}-${numeros.substring(9)}';
   }
 
   // Validar número de CPF
@@ -27,8 +27,10 @@ class CPF {
     if (RegExp(r'^(\d)\1*$').hasMatch(numeros)) return false;
 
     // Dividir dígitos
-    List<int> digitos =
-        numeros.split('').map((String d) => int.parse(d)).toList();
+    //jeito antigo   List<int> digitos =
+    //  numeros.split('').map((String d) => int.parse(d)).toList();
+    var digitos = numeros.split('').map((d) => int.parse(d)).toList();
+    ;
 
     // Calcular o primeiro dígito verificador
     var calc_dv1 = 0;
